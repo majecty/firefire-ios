@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41364B652C32F62000D301F8 /* 0518sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 41364B642C32F62000D301F8 /* 0518sample.mp4 */; };
 		CE31D67526FD7833009D7315 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = CE31D67426FD7833009D7315 /* Shaders.metal */; };
 		CE31D67726FDA689009D7315 /* MetalVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31D67626FDA689009D7315 /* MetalVideoPlayer.swift */; };
 		CE31D67926FDA936009D7315 /* SimpleVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31D67826FDA936009D7315 /* SimpleVideoPlayer.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		41364B642C32F62000D301F8 /* 0518sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 0518sample.mp4; sourceTree = "<group>"; };
 		CE31D67426FD7833009D7315 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		CE31D67626FDA689009D7315 /* MetalVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalVideoPlayer.swift; sourceTree = "<group>"; };
 		CE31D67826FDA936009D7315 /* SimpleVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleVideoPlayer.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				CEDB246527037B8A00AC9CC1 /* Extensions.swift */,
 				CE9513C326DC917C0016944F /* Assets.xcassets */,
 				CEDB2487270EBC8300AC9CC1 /* bunny.mp4 */,
+				41364B642C32F62000D301F8 /* 0518sample.mp4 */,
 				CE9513C826DC917C0016944F /* Info.plist */,
 				CE9513C526DC917C0016944F /* Preview Content */,
 			);
@@ -201,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE9513C726DC917C0016944F /* Preview Assets.xcassets in Resources */,
+				41364B652C32F62000D301F8 /* 0518sample.mp4 in Resources */,
 				CE9513C426DC917C0016944F /* Assets.xcassets in Resources */,
 				CEDB2488270EBC8300AC9CC1 /* bunny.mp4 in Resources */,
 			);
@@ -357,7 +361,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"VideoEffect/Preview Content\"";
-				DEVELOPMENT_TEAM = U6Q8TLUS3X;
+				DEVELOPMENT_TEAM = X9CEF726HS;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = VideoEffect/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -365,10 +369,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.navercorp.videoeffect.VideoEffect;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.juhyung.firefire.nativevideo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -379,7 +387,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"VideoEffect/Preview Content\"";
-				DEVELOPMENT_TEAM = U6Q8TLUS3X;
+				DEVELOPMENT_TEAM = X9CEF726HS;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = VideoEffect/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -387,10 +395,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.navercorp.videoeffect.VideoEffect;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.juhyung.firefire.nativevideo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
