@@ -10,9 +10,19 @@ import AVKit
 
 class SimpleVideoPlayerViewModel: ObservableObject {
     
-    private static let defaultURL = Bundle.main.url(forResource: "bunny", withExtension: "mp4")!
+//    private static let defaultURL = Bundle.main.url(forResource: "bunny", withExtension: "mp4")!
+    private static let defaultURL = Bundle.main.url(forResource: "0518sample", withExtension: "mp4")!
+
+    let player = AVQueuePlayer(url: defaultURL)
+    let playerLooper: AVPlayerLooper
+//    let playerLooper = AVPlayerLooper(player: self.player, templateItem: AVAsset(url: defaultURL))
     
-    let player = AVPlayer(url: defaultURL)
+    init () {
+        let asset = AVAsset(url: SimpleVideoPlayerViewModel.defaultURL)
+        let item = AVPlayerItem(asset: asset)
+        playerLooper = AVPlayerLooper(player: self.player, templateItem: item)
+        
+    }
 }
 
 struct SimpleVideoPlayer: View {
@@ -24,7 +34,7 @@ struct SimpleVideoPlayer: View {
     var body: some View {
         
         VideoPlayer(player: model.player)
-            .aspectRatio(1.0, contentMode: .fit)
+            .aspectRatio(1.0, contentMode: .fill)
             .onAppear {
                 model.player.play()
             }
@@ -39,14 +49,15 @@ struct SimpleVideoPlayer: View {
                     }
                 }
             })
-            .toolbar(content: {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Open") {
-                        self.showsPhotoPicker = true
-                    }
-                }
-            })
-            .navigationTitle("Simple Video Player")
-            .navigationBarTitleDisplayMode(.inline)
+        
+//            .toolbar(content: {
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    Button("Open") {
+//                        self.showsPhotoPicker = true
+//                    }
+//                }
+//            })
+//            .navigationTitle("Simple Video Player")
+//            .navigationBarTitleDisplayMode(.inline)
     }
 }

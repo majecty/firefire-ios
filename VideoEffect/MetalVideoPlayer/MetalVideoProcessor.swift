@@ -13,9 +13,12 @@ import SwiftUI
 
 final class MetalVideoProcessor: ObservableObject {
     
-    private static let defaultURL = Bundle.main.url(forResource: "bunny", withExtension: "mp4")!
+//    private static let defaultURL = Bundle.main.url(forResource: "bunny", withExtension: "mp4")!
+    private static let defaultURL = Bundle.main.url(forResource: "0518sample", withExtension: "mp4")!
     
-    let player = AVPlayer(url: defaultURL)
+    let player = AVQueuePlayer(url: defaultURL)
+    let playerLooper: AVPlayerLooper
+    
     
     @Published var currentFilter: Filter = .none {
         didSet {
@@ -40,6 +43,10 @@ final class MetalVideoProcessor: ObservableObject {
     private let ciContext = CIContext(mtlDevice: device)
     
     init() {
+        let asset = AVAsset(url: MetalVideoProcessor.defaultURL)
+        let item = AVPlayerItem(asset: asset)
+        playerLooper = AVPlayerLooper(player: player, templateItem: item)
+
         updateVideoComposition(with: currentFilter)
     }
     
