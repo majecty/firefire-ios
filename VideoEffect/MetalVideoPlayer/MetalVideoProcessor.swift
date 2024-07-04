@@ -198,6 +198,7 @@ extension MetalVideoProcessor {
         case gaussianBlur = "Gaussian Blur"
         case pixellateAnimation = "Pixellate Animation"
         case grayscaleAnimation = "Grayscale Animation"
+        case video360 = "360 Video"
         
         var id: String {
             self.rawValue
@@ -219,6 +220,10 @@ extension MetalVideoProcessor {
                     return nil
                 }
                 return MetalVideoFilters.ComputeKernelFilter(computePipelineState: state)
+                
+            case .video360:
+                // TODO:
+                return nil
                 
             default:
                 return nil
