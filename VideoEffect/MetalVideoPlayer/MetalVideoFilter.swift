@@ -42,8 +42,9 @@ extension MetalVideoFilters {
             let height = computePipelineState.maxTotalThreadsPerThreadgroup / width
             let threadsPerThreadgroup = MTLSize(width: width, height: height, depth: 1)
             
-            let gridSize = MTLSize(width: destinationTexture.width, height: destinationTexture.height, depth: 1)
-            
+            let gridSize = MTLSize(width: sourceTexture.width, height: sourceTexture.height, depth: 1)
+//            let gridSize = MTLSize(width: destinationTexture.width, height: destinationTexture.height, depth: 1)
+
             var time = Float(time.seconds)
             commandEncoder.setBytes(&time, length: MemoryLayout<Float>.stride, index: 0)
             
