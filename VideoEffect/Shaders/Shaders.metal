@@ -10,6 +10,16 @@ using namespace metal;
 
 constant half3 kRec709LumaCoefficients = half3(0.2126, 0.7152, 0.0722);
 
+kernel void video360Filter(texture2d<half, access::read> inputTexture [[texture(0)]],
+                                     texture2d<half, access::write> outputTexture [[texture(1)]],
+                                     constant float &time [[buffer(0)]],
+                                     uint2 gid [[thread_position_in_grid]])
+{
+    const half4 inputColor = inputTexture.read(gid);
+    outputTexture.write(inputColor, gid);
+}
+
+
 kernel void grayscaleAnimationFilter(texture2d<half, access::read> inputTexture [[texture(0)]],
                                      texture2d<half, access::write> outputTexture [[texture(1)]],
                                      constant float &time [[buffer(0)]],
