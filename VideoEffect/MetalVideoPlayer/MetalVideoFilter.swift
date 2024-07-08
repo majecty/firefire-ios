@@ -21,6 +21,37 @@ enum MetalVideoFilters {}
 
 extension MetalVideoFilters {
     
+    struct Video360Filter: MetalVideoFilter {
+        
+        // shader code
+        var computePipelineState: MTLComputePipelineState
+        
+        func process(commandBuffer: MTLCommandBuffer,
+                     sourceTexture: MTLTexture,
+                     destinationTexture: MTLTexture,
+                     at time: CMTime) throws {
+            guard let commandEncoder = commandBuffer.makeComputeCommandEncoder() else {
+                return
+            }
+            
+            commandEncoder.setComputePipelineState(computePipelineState)
+            commandEncoder.setTexture(sourceTexture, index: 0)
+            commandEncoder.setTexture(destinationTexture, index: 1)
+            
+            let width = computePipelineState.threadExecutionWidth
+            let height = computePipelineState.maxTotalThreadsPerThreadgroup / width
+            let threadsPerThreadgroup = MTLSize(width: width, height: height, depth: 1)
+            
+            let gridSize = MTLSize(width: destinationTexture.width, height: destinationTexture.height, depth: 1)
+            
+            var time = Float(time.seconds)
+            commandEncoder.setBytes(&time, length: MemoryLayout<Float>.stride, index: 0)
+            
+            commandEncoder.dispatchThreads(gridSize, threadsPerThreadgroup: threadsPerThreadgroup)
+            commandEncoder.endEncoding()
+        }
+    }
+    
     struct ComputeKernelFilter: MetalVideoFilter {
         
         var computePipelineState: MTLComputePipelineState

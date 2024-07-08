@@ -222,9 +222,10 @@ extension MetalVideoProcessor {
                 return MetalVideoFilters.ComputeKernelFilter(computePipelineState: state)
                 
             case .video360:
-                // TODO:
-                return nil
-                
+                guard let state = Self.video360ComputePipelineState else {
+                    return nil
+                }
+                return MetalVideoFilters.Video360Filter(computePipelineState: state)
             default:
                 return nil
             }
@@ -240,6 +241,13 @@ extension MetalVideoProcessor {
         private static let grayscaleComputePipelineState: MTLComputePipelineState? = {
             guard let function = MetalVideoProcessor.library.makeFunction(name: "grayscaleAnimationFilter") else {
                 fatalError("Failed to create grayscaleColorFilter function.")
+            }
+            return try? MetalVideoProcessor.device.makeComputePipelineState(function: function)
+        }()
+        
+        private static let video360ComputePipelineState: MTLComputePipelineState? = {
+            guard let function = MetalVideoProcessor.library.makeFunction(name: "video360Filter") else {
+                fatalError("failed to create video360filter function")
             }
             return try? MetalVideoProcessor.device.makeComputePipelineState(function: function)
         }()
