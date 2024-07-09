@@ -27,6 +27,10 @@ struct MainView: View {
                     Text("Metal Video Player")
                 }
                 
+                NavigationLink(destination: GyroTest()) {
+                    Text("Gyro Test")
+                }
+                
             }
             .listStyle(GroupedListStyle())
             .navigationBarTitle("Video Effects")

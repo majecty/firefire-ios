@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		41364B652C32F62000D301F8 /* 0518sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 41364B642C32F62000D301F8 /* 0518sample.mp4 */; };
+		418023F62C3D8228000C5152 /* GyroTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418023F52C3D8228000C5152 /* GyroTest.swift */; };
 		CE31D67526FD7833009D7315 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = CE31D67426FD7833009D7315 /* Shaders.metal */; };
 		CE31D67726FDA689009D7315 /* MetalVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31D67626FDA689009D7315 /* MetalVideoPlayer.swift */; };
 		CE31D67926FDA936009D7315 /* SimpleVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31D67826FDA936009D7315 /* SimpleVideoPlayer.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		41364B642C32F62000D301F8 /* 0518sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 0518sample.mp4; sourceTree = "<group>"; };
+		418023F52C3D8228000C5152 /* GyroTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroTest.swift; sourceTree = "<group>"; };
 		CE31D67426FD7833009D7315 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		CE31D67626FDA689009D7315 /* MetalVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalVideoPlayer.swift; sourceTree = "<group>"; };
 		CE31D67826FDA936009D7315 /* SimpleVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleVideoPlayer.swift; sourceTree = "<group>"; };
@@ -63,6 +65,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		418023F42C3D8116000C5152 /* GyroTest */ = {
+			isa = PBXGroup;
+			children = (
+				418023F52C3D8228000C5152 /* GyroTest.swift */,
+			);
+			path = GyroTest;
+			sourceTree = "<group>";
+		};
 		CE31D67326FD781B009D7315 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +130,7 @@
 		CE9513BE26DC917A0016944F /* VideoEffect */ = {
 			isa = PBXGroup;
 			children = (
+				418023F42C3D8116000C5152 /* GyroTest */,
 				CE9513BF26DC917A0016944F /* VideoEffectApp.swift */,
 				CE9513C126DC917A0016944F /* MainView.swift */,
 				CE9513CE26DCACE40016944F /* PhotoPicker.swift */,
@@ -227,6 +238,7 @@
 				CE31D67926FDA936009D7315 /* SimpleVideoPlayer.swift in Sources */,
 				CE7BFB382702093600CCA283 /* CoreImageVideoPlayer.swift in Sources */,
 				CE31D67726FDA689009D7315 /* MetalVideoPlayer.swift in Sources */,
+				418023F62C3D8228000C5152 /* GyroTest.swift in Sources */,
 				CEDB246627037B8A00AC9CC1 /* Extensions.swift in Sources */,
 				CE9513C226DC917A0016944F /* MainView.swift in Sources */,
 				CE9513C026DC917A0016944F /* VideoEffectApp.swift in Sources */,
