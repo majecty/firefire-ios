@@ -27,7 +27,7 @@ struct MainView: View {
                     Text("Metal Video Player")
                 }
                 
-                NavigationLink(destination: GyroTest()) {
+                NavigationLink(destination: GyroTest(gyro: GyroModel())) {
                     Text("Gyro Test")
                 }
                 

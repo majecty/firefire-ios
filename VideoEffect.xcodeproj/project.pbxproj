@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		41364B652C32F62000D301F8 /* 0518sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 41364B642C32F62000D301F8 /* 0518sample.mp4 */; };
 		418023F62C3D8228000C5152 /* GyroTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418023F52C3D8228000C5152 /* GyroTest.swift */; };
+		418023F82C3D8860000C5152 /* GyroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418023F72C3D8860000C5152 /* GyroModel.swift */; };
 		CE31D67526FD7833009D7315 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = CE31D67426FD7833009D7315 /* Shaders.metal */; };
 		CE31D67726FDA689009D7315 /* MetalVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31D67626FDA689009D7315 /* MetalVideoPlayer.swift */; };
 		CE31D67926FDA936009D7315 /* SimpleVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31D67826FDA936009D7315 /* SimpleVideoPlayer.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		41364B642C32F62000D301F8 /* 0518sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 0518sample.mp4; sourceTree = "<group>"; };
 		418023F52C3D8228000C5152 /* GyroTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroTest.swift; sourceTree = "<group>"; };
+		418023F72C3D8860000C5152 /* GyroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroModel.swift; sourceTree = "<group>"; };
 		CE31D67426FD7833009D7315 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		CE31D67626FDA689009D7315 /* MetalVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalVideoPlayer.swift; sourceTree = "<group>"; };
 		CE31D67826FDA936009D7315 /* SimpleVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleVideoPlayer.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				418023F52C3D8228000C5152 /* GyroTest.swift */,
+				418023F72C3D8860000C5152 /* GyroModel.swift */,
 			);
 			path = GyroTest;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				418023F82C3D8860000C5152 /* GyroModel.swift in Sources */,
 				CE31D67526FD7833009D7315 /* Shaders.metal in Sources */,
 				CE7C71EA26DF32D80002C4FE /* MetalVideoProcessor.swift in Sources */,
 				CEB1D25C26E2776900F48894 /* MetalVideoFilter.swift in Sources */,
