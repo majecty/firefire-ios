@@ -11,8 +11,8 @@ import Combine
 
 final class CoreImageVideoProcessor: ObservableObject {
     
-//    private static let defaultURL = Bundle.main.url(forResource: "bunny", withExtension: "mp4")!
-    private static let defaultURL = Bundle.main.url(forResource: "0518sample", withExtension: "mp4")!
+    private static let defaultURL = Bundle.main.url(forResource: "bunny", withExtension: "mp4")!
+//    private static let defaultURL = Bundle.main.url(forResource: "0518sample", withExtension: "mp4")!
     
     let player = AVPlayer(url: defaultURL)
     
