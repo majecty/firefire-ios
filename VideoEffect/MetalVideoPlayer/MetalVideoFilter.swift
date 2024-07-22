@@ -8,12 +8,15 @@
 import AVFoundation
 import MetalPerformanceShaders
 import CoreImage
+import CoreMotion
 
 protocol MetalVideoFilter {
     
     func process(commandBuffer: MTLCommandBuffer,
                  sourceTexture: MTLTexture,
                  destinationTexture: MTLTexture,
+                 heading: Double,
+                 attitudeQuaternion: CMQuaternion,
                  at time: CMTime) throws
 }
 
@@ -29,6 +32,8 @@ extension MetalVideoFilters {
         func process(commandBuffer: MTLCommandBuffer,
                      sourceTexture: MTLTexture,
                      destinationTexture: MTLTexture,
+                     heading: Double,
+                     attitudeQuaternion: CMQuaternion,
                      at time: CMTime) throws {
             guard let commandEncoder = commandBuffer.makeComputeCommandEncoder() else {
                 return
@@ -60,6 +65,8 @@ extension MetalVideoFilters {
         func process(commandBuffer: MTLCommandBuffer,
                      sourceTexture: MTLTexture,
                      destinationTexture: MTLTexture,
+                     heading: Double,
+                     attitudeQuaternion: CMQuaternion,
                      at time: CMTime) throws {
 
             guard let commandEncoder = commandBuffer.makeComputeCommandEncoder() else {
@@ -91,6 +98,8 @@ extension MetalVideoFilters {
         func process(commandBuffer: MTLCommandBuffer,
                      sourceTexture: MTLTexture,
                      destinationTexture: MTLTexture,
+                     heading: Double,
+                     attitudeQuaternion: CMQuaternion,
                      at time: CMTime) throws {
             
             let filter = MPSImageGaussianBlur(device: device, sigma: 10.0)

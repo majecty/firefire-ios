@@ -192,6 +192,8 @@ extension MetalVideoProcessor {
                     try filter.process(commandBuffer: commandBuffer,
                                        sourceTexture: sourceTexture,
                                        destinationTexture: destinationTexture,
+                                       heading: self.heading,
+                                       attitudeQuaternion: self.attitudeQuaternion,
                                        at: request.compositionTime)
                     
                     commandBuffer.commit()
