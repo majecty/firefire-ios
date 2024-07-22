@@ -10,6 +10,7 @@ import CoreImage
 import Combine
 import Metal
 import SwiftUI
+import CoreMotion
 
 final class MetalVideoProcessor: ObservableObject {
     
@@ -18,8 +19,13 @@ final class MetalVideoProcessor: ObservableObject {
     
     let player = AVQueuePlayer(url: defaultURL)
     let playerLooper: AVPlayerLooper
+    let motionManager = CMMotionManager()
     
-    
+    @Published
+    var heading: Double = 0.0
+    @Published
+    var attitudeQuaternion: CMQuaternion = CMQuaternion.init()
+
     @Published var currentFilter: Filter = .none {
         didSet {
             updateVideoComposition(with: currentFilter)
@@ -48,6 +54,26 @@ final class MetalVideoProcessor: ObservableObject {
         playerLooper = AVPlayerLooper(player: player, templateItem: item)
 
         updateVideoComposition(with: currentFilter)
+        
+        self.motionManager.deviceMotionUpdateInterval = 1.0 / 60
+
+        self.motionManager.startDeviceMotionUpdates(to: .main) {
+            [weak self] (motionData, error) in
+            guard error == nil else {
+                print (error!)
+                return
+            }
+            
+            guard let self = self else {
+                return
+            }
+            
+            if let motionData = motionData {
+                self.heading = motionData.heading
+                
+                self.attitudeQuaternion = motionData.attitude.quaternion
+            }
+        }
     }
     
     func updateURL(_ url: URL) {
