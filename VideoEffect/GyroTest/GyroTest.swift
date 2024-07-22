@@ -16,9 +16,11 @@ struct GyroTest: View {
         NavigationView {
             List {
                 Text("Gyro value")
-                Text("X: " + gyro.x.description)
-                Text("Y: " + gyro.y.description)
-                Text("Z: " + gyro.z.description)
+                Text("Roll: " + gyro.roll.description)
+                Text("Pitch: " + gyro.pitch.description)
+                Text("Yaw: " + gyro.yaw
+                    .description)
+                Text("Heading: " + gyro.heading.description)
             }
             .listStyle(GroupedListStyle())
             .navigationBarTitle("Gyro test")

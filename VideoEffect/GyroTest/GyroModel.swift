@@ -12,18 +12,23 @@ class GyroModel : ObservableObject {
     private var motionManager: CMMotionManager
     
     @Published
-    var x: Double = 0.0
+    var roll: Double = 0.0
     @Published
-    var y: Double = 0.0
+    var pitch: Double = 0.0
     @Published
-    var z: Double = 0.0
+    var yaw: Double = 0.0
+    @Published
+    var heading: Double = 0.0
+    @Published
+    var attitudeQuaternion: CMQuaternion = CMQuaternion.init()
     
     init() {
         self.motionManager = CMMotionManager()
-        self.motionManager.magnetometerUpdateInterval = 1 / 60
-        self.motionManager.startMagnetometerUpdates(to: .main) { [weak self] (magnetometerData, error) in
+        self.motionManager.deviceMotionUpdateInterval = 1.0 / 60
+        self.motionManager.startDeviceMotionUpdates(to: .main) {
+            [weak self] (motionData, error) in
             guard error == nil else {
-                print(error!)
+                print (error!)
                 return
             }
             
@@ -31,12 +36,14 @@ class GyroModel : ObservableObject {
                 return
             }
             
-            if let magnetData = magnetometerData {
-                self.x = magnetData.magneticField.x
-                self.y = magnetData.magneticField.y
-                self.z = magnetData.magneticField.z
+            if let motionData = motionData {
+                self.roll = motionData.attitude.roll
+                self.pitch = motionData.attitude.pitch
+                self.yaw = motionData.attitude.yaw
+                self.heading = motionData.heading
+                
+                self.attitudeQuaternion = motionData.attitude.quaternion
             }
-            
         }
     }
 }
