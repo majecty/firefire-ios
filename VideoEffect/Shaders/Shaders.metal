@@ -12,11 +12,31 @@ constant half3 kRec709LumaCoefficients = half3(0.2126, 0.7152, 0.0722);
 
 constant float PI = 3.14159265;
 constant float DEG2RAD = 0.01745329251994329576923690768489;
+constant float RAD2DEG = 57.29577951308232;
 
 float3 rotateXY(float3 p, float2 angle) {
     float2 c = cos(angle), s = sin(angle);
     p = float3(p.x, c.x * p.y + s.x * p.z, -s.x * p.y + c.x * p.z);
     return float3(c.y * p.x + s.y * p.z, p.y, -s.y * p.x + c.y * p.z);
+}
+
+float3 rotateByQuaternion(float3 point, float4 q) {
+    float3 u = float3(q.x, q.y, q.z);
+    float s = q.w;
+
+    return 2.0 * dot(u, point) * u
+         + (s*s - dot(u, u)) * point
+         + 2.0 * s * cross(u, point);
+}
+
+// Function to create a rotation matrix for heading
+float3x3 createHeadingMatrix(float heading) {
+    float cosHeading = cos(heading);
+    float sinHeading = sin(heading);
+
+    return float3x3(float3(cosHeading, sinHeading, 0),
+                    float3(-sinHeading, cosHeading, 0),
+                    float3(0, 0, 1));
 }
 
 struct DeviceMotionData {
@@ -39,10 +59,15 @@ kernel void video360Filter(
     float2 tanFov = float2(tan(0.5 * hfovDegrees * DEG2RAD), tan(0.5 * vfovDegrees * DEG2RAD));
     float3 camDir = normalize(float3(uv * tanFov, 1.0));
     
-    const auto ramp = sin(time / 10.0) * 0.5 + 0.5;
-    float2 camRot = ramp * float2(2.0 * PI, PI);
+//    const auto ramp = sin(time / 10.0) * 0.5 + 0.5;
+//    float2 camRot = ramp * float2(2.0 * PI, PI);
+//    float3 rd = normalize(rotateXY(camDir, camRot.yx));
     
-    float3 rd = normalize(rotateXY(camDir, camRot.yx));
+    float3 camDir2 = rotateByQuaternion(camDir, motionData.quaternion);
+    float3x3 headingMatrix = createHeadingMatrix(motionData.heading * DEG2RAD);
+    float3 camDir3 = headingMatrix * camDir2;
+    float3 rd = camDir3;
+    
     float2 texCoord = float2(atan2(rd.z, rd.x) + PI, acos(-rd.y)) / float2(2.0 * PI , PI);
     // uint2 형변환 주의!!!!
     half4 fragColor = inputTexture.read(uint2(texCoord * float2(inputTexture.get_width(), inputTexture.get_height())));

@@ -70,6 +70,9 @@ final class MetalVideoProcessor: ObservableObject {
             
             if let motionData = motionData {
                 self.heading = motionData.heading
+                if (self.heading < 0 || self.heading > 360) {
+                    self.heading = 0;
+                }
                 
                 self.attitudeQuaternion = motionData.attitude.quaternion
             }
