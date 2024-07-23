@@ -19,11 +19,17 @@ float3 rotateXY(float3 p, float2 angle) {
     return float3(c.y * p.x + s.y * p.z, p.y, -s.y * p.x + c.y * p.z);
 }
 
+struct DeviceMotionData {
+    float4 quaternion; // Quaternion (x, y, z, w)
+    float heading;     // Heading in radians
+};
 
-kernel void video360Filter(texture2d<half, access::read> inputTexture [[texture(0)]],
-                                     texture2d<half, access::write> outputTexture [[texture(1)]],
-                                     constant float &time [[buffer(0)]],
-                                     uint2 gid [[thread_position_in_grid]])
+kernel void video360Filter(
+    texture2d<half, access::read> inputTexture [[texture(0)]],
+    texture2d<half, access::write> outputTexture [[texture(1)]],
+    constant float &time [[buffer(0)]],
+    constant DeviceMotionData &motionData [[buffer(1)]],
+    uint2 gid [[thread_position_in_grid]])
 {
     float hfovDegrees = 120.0;
     float vfovDegrees = 60.0;

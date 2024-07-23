@@ -10,6 +10,13 @@ import MetalPerformanceShaders
 import CoreImage
 import CoreMotion
 
+import simd
+
+struct DeviceMotionData {
+    var quaternion: simd_float4
+    var heading: Float
+}
+
 protocol MetalVideoFilter {
     
     func process(commandBuffer: MTLCommandBuffer,
@@ -53,6 +60,7 @@ extension MetalVideoFilters {
             var time = Float(time.seconds)
             commandEncoder.setBytes(&time, length: MemoryLayout<Float>.stride, index: 0)
             
+            
             commandEncoder.dispatchThreads(gridSize, threadsPerThreadgroup: threadsPerThreadgroup)
             commandEncoder.endEncoding()
         }
@@ -85,6 +93,16 @@ extension MetalVideoFilters {
             
             var time = Float(time.seconds)
             commandEncoder.setBytes(&time, length: MemoryLayout<Float>.stride, index: 0)
+            
+            var motionData = DeviceMotionData(quaternion:
+                                                            simd_float4(
+                                                                Float(attitudeQuaternion.x),
+                                                                Float(attitudeQuaternion.y),
+                                                                Float(attitudeQuaternion.z),
+                                                                Float(attitudeQuaternion.w)),
+                                              heading: Float(heading))
+
+            commandEncoder.setBytes(&motionData, length: MemoryLayout<DeviceMotionData>.size, index: 1)
             
             commandEncoder.dispatchThreads(gridSize, threadsPerThreadgroup: threadsPerThreadgroup)
             commandEncoder.endEncoding()
