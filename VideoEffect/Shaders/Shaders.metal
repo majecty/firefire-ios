@@ -35,6 +35,19 @@ float3 rotateByQuaternion(float3 v, float4 q) {
     return v + q.w * t + cross(qv, t);
 }
 
+// Function to create rotation matrix around z-axis
+float3x3 rotateYaw(float theta) {
+    float cosTheta = cos(theta);
+    float sinTheta = sin(theta);
+    
+    return float3x3(
+        cosTheta, -sinTheta, 0.0,
+        sinTheta, cosTheta, 0.0,
+        0.0, 0.0, 1.0
+    );
+}
+
+
 // Function to create a rotation matrix for heading
 float3x3 createHeadingMatrix(float heading) {
     float cosHeading = cos(heading);
@@ -50,7 +63,8 @@ float3x3 createHeadingMatrix(float heading) {
 }
 
 struct DeviceMotionData {
-    float4 quaternion; // Quaternion (x, y, z, w)
+//    float4 quaternion; // Quaternion (x, y, z, w)
+    float4 rollpitchyaw;
     float heading;     // Heading in radians
 };
 
@@ -70,15 +84,18 @@ kernel void video360Filter(
     float3 camDir = normalize(float3(uv * tanFov, 1.0));
 //    float3 rd = camDir;
     
+    float3 rd = rotateYaw(motionData.rollpitchyaw.z) * camDir;
+    
+    
 //    const auto ramp = sin(time / 10.0) * 0.5 + 0.5;
 //    float2 camRot = ramp * float2(2.0 * PI, PI);
 //    float3 rd = normalize(rotateXY(camDir, camRot.yx));
 //    float4 invertedQuaternion = float4(motionData.quaternion.x, -motionData.quaternion.y, motionData.quaternion.z, motionData.quaternion.w);
 
     
-    float3 camDir2 = rotateByQuaternion(camDir, motionData.quaternion);
+//    float3 camDir2 = rotateByQuaternion(camDir, motionData.quaternion);
 //    float3 camDir2 = rotateByQuaternion(camDir, invertedQuaternion);
-    float3 rd = camDir2;
+//    float3 rd = camDir2;
     
 //    float4 landscapeLeftQuaternion = float4(0.0, 0.0, sin(PI / 4), cos(PI / 4));
 //    float3 camDir3 = rotateByQuaternion(camDir2, landscapeLeftQuaternion);
