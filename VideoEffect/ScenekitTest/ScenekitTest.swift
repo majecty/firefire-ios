@@ -7,16 +7,16 @@
 
 import Foundation
 import SwiftUI
+import SceneKit
 
 struct ScenekitTest: View {
+    var scene = SCNScene(named: "360videoScene")
+    
+    var cameraNode: SCNNode? {
+        scene?.rootNode.childNode(withName: "camera", recursively: false)
+    }
+    
     var body: some View {
-        NavigationView {
-            List {
-                Text("scenekit test")
-            }
-            .listStyle(GroupedListStyle())
-            .navigationBarTitle("scenekit test")
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
+        SceneView(scene: scene, pointOfView: cameraNode, options: [])
     }
 }
