@@ -33,6 +33,7 @@ class VideoPlayerViewModel: ObservableObject {
         let asset = AVAsset(url: VideoPlayerViewModel.defaultURL)
         let item = AVPlayerItem(asset: asset)
         playerLooper = AVPlayerLooper(player: self.player, templateItem: item)
+        self.player.play()
         videoNode = SKVideoNode(avPlayer: self.player)
         let size = CGSizeMake(1334, 750)
         videoNode.size = size
