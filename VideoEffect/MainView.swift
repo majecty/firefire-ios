@@ -31,6 +31,10 @@ struct MainView: View {
                     Text("Gyro Test")
                 }
                 
+                NavigationLink(destination: ScenekitTest()) {
+                    Text("Scenekit test")
+                }
+                
             }
             .listStyle(GroupedListStyle())
             .navigationBarTitle("Video Effects")
