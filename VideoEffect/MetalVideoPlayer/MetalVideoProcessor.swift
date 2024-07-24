@@ -25,6 +25,10 @@ final class MetalVideoProcessor: ObservableObject {
     var heading: Double = 0.0
     @Published
     var attitudeQuaternion: CMQuaternion = CMQuaternion.init()
+    
+    var pitch: Double = 0.0
+    var roll: Double = 0.0
+    var yaw: Double = 0.0
 
     @Published var currentFilter: Filter = .none {
         didSet {
@@ -74,7 +78,28 @@ final class MetalVideoProcessor: ObservableObject {
                     self.heading = 0;
                 }
                 
+                self.roll = motionData.attitude.roll;
+                self.pitch = motionData.attitude.pitch;
+                self.yaw = motionData.attitude.yaw;
+//                let halfRoll = motionData.attitude.roll * 0.5
+//                let halfPitch = motionData.attitude.pitch * 0.5
+//                let halfYaw = motionData.attitude.yaw * 0.5
+//
+//                let cosHalfRoll = cos(halfRoll)
+//                let sinHalfRoll = sin(halfRoll)
+//                let cosHalfPitch = cos(halfPitch)
+//                let sinHalfPitch = sin(halfPitch)
+//                let cosHalfYaw = cos(halfYaw)
+//                let sinHalfYaw = sin(halfYaw)
+//
+//                let x = sinHalfRoll * cosHalfPitch * cosHalfYaw - cosHalfRoll * sinHalfPitch * sinHalfYaw
+//                let y = cosHalfRoll * sinHalfPitch * cosHalfYaw + sinHalfRoll * cosHalfPitch * sinHalfYaw
+//                let z = cosHalfRoll * cosHalfPitch * sinHalfYaw - sinHalfRoll * sinHalfPitch * cosHalfYaw
+//                let w = cosHalfRoll * cosHalfPitch * cosHalfYaw + sinHalfRoll * sinHalfPitch * sinHalfYaw
+
+                
                 self.attitudeQuaternion = motionData.attitude.quaternion
+//                self.attitudeQuaternion = CMQuaternion(x: x, y: y, z: z, w: w)
             }
         }
     }
@@ -197,6 +222,11 @@ extension MetalVideoProcessor {
                                        destinationTexture: destinationTexture,
                                        heading: self.heading,
                                        attitudeQuaternion: self.attitudeQuaternion,
+                                       rollPitchYaw: SIMD3<Float>(
+                                        Float(self.roll),
+                                        Float(self.pitch),
+                                        Float(self.yaw)
+                                       ),
                                        at: request.compositionTime)
                     
                     commandBuffer.commit()

@@ -24,6 +24,7 @@ protocol MetalVideoFilter {
                  destinationTexture: MTLTexture,
                  heading: Double,
                  attitudeQuaternion: CMQuaternion,
+                 rollPitchYaw: SIMD3<Float>,
                  at time: CMTime) throws
 }
 
@@ -41,6 +42,7 @@ extension MetalVideoFilters {
                      destinationTexture: MTLTexture,
                      heading: Double,
                      attitudeQuaternion: CMQuaternion,
+                     rollPitchYaw: SIMD3<Float>,
                      at time: CMTime) throws {
             guard let commandEncoder = commandBuffer.makeComputeCommandEncoder() else {
                 return
@@ -67,10 +69,13 @@ extension MetalVideoFilters {
 //                                                    Float(attitudeQuaternion.w)),
 //                                  heading: Float(heading))
             var motionData = [Float](repeating: Float(0), count: 5 * 3);
-            motionData[0] = Float(attitudeQuaternion.x);
-            motionData[1] = Float(attitudeQuaternion.y);
-            motionData[2] = Float(attitudeQuaternion.z);
-            motionData[3] = Float(attitudeQuaternion.w);
+            motionData[0] = rollPitchYaw.x;
+            motionData[1] = rollPitchYaw.y;
+            motionData[2] = rollPitchYaw.z;
+//            motionData[0] = Float(attitudeQuaternion.x);
+//            motionData[1] = Float(attitudeQuaternion.y);
+//            motionData[2] = Float(attitudeQuaternion.z);
+//            motionData[3] = Float(attitudeQuaternion.w);
             motionData[4] = Float(heading);
             commandEncoder.setBytes(&motionData, length: MemoryLayout<Float>.stride * (5 + 3), index: 1)
             commandEncoder.dispatchThreads(gridSize, threadsPerThreadgroup: threadsPerThreadgroup)
@@ -87,6 +92,8 @@ extension MetalVideoFilters {
                      destinationTexture: MTLTexture,
                      heading: Double,
                      attitudeQuaternion: CMQuaternion,
+                                      rollPitchYaw: SIMD3<Float>,
+
                      at time: CMTime) throws {
 
             guard let commandEncoder = commandBuffer.makeComputeCommandEncoder() else {
@@ -120,6 +127,8 @@ extension MetalVideoFilters {
                      destinationTexture: MTLTexture,
                      heading: Double,
                      attitudeQuaternion: CMQuaternion,
+                                      rollPitchYaw: SIMD3<Float>,
+
                      at time: CMTime) throws {
             
             let filter = MPSImageGaussianBlur(device: device, sigma: 10.0)
