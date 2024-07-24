@@ -27,6 +27,7 @@ class VideoPlayerViewModel: ObservableObject {
         sphere.firstMaterial!.diffuse.contents = material
         let sphereNode = SCNNode(geometry: sphere)
         sphereNode.position = SCNVector3Make(0,0,0)
+        sphereNode.eulerAngles = SCNVector3Make(0, 0, Float.pi);
         return sphereNode
     }
     
@@ -53,7 +54,6 @@ class VideoPlayerViewModel: ObservableObject {
         let sphereNode = self.createSphereNode(material: spriteScene)
         scene?.rootNode.addChildNode(sphereNode)
         
-//        let cameraNode = SCNNode()
         cameraNode.name = "camera"
         cameraNode.camera = SCNCamera()
         cameraNode.position = SCNVector3Make(0, 0, 0)
@@ -78,9 +78,6 @@ class VideoPlayerViewModel: ObservableObject {
             }
             
             self.cameraNode.orientation = motionData.gaze(atOrientation: .landscapeLeft)
-//            let attitude = motionData.attitude
-//            self.cameraNode
-//            self.cameraNode.eulerAngles = SCNVector3Make(Float(attitude.roll - Double.pi/2.0), Float(attitude.yaw), Float(attitude.pitch))
         }
     }
 }
