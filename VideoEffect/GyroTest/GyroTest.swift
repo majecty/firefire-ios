@@ -8,6 +8,11 @@
 import Foundation
 import SwiftUI
 
+func radiansToDegrees(_ radians: Double) -> Int {
+    return Int(radians * 180 / Double.pi)
+}
+
+
 struct GyroTest: View {
     @ObservedObject
     var gyro: GyroModel
@@ -16,11 +21,16 @@ struct GyroTest: View {
         NavigationView {
             List {
                 Text("Gyro value")
-                Text("Roll: " + gyro.roll.description)
-                Text("Pitch: " + gyro.pitch.description)
-                Text("Yaw: " + gyro.yaw
+                // 옆으로 다른 곳 볼 때
+                Text("Roll: " + radiansToDegrees( gyro.roll).description)
+                
+                // 앞으로 숙일 때
+                Text("Pitch: " + radiansToDegrees( gyro.pitch).description)
+                
+                // 방향 유지 회전 landscape / portrait
+                Text("Yaw: " + radiansToDegrees(gyro.yaw)
                     .description)
-                Text("Heading: " + gyro.heading.description)
+                Text("Heading: " + Int(gyro.heading).description)
             }
             .listStyle(GroupedListStyle())
             .navigationBarTitle("Gyro test")
