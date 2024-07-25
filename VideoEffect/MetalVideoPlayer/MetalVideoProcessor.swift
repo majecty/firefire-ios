@@ -14,7 +14,8 @@ import CoreMotion
 
 final class MetalVideoProcessor: ObservableObject {
     
-    private static let defaultURL = Bundle.main.url(forResource: "bunny", withExtension: "mp4")!
+//    private static let defaultURL = Bundle.main.url(forResource: "bunny", withExtension: "mp4")!
+    private static let defaultURL = Bundle.main.url(forResource: "0702mp4ver", withExtension: "mp4")!
 //    private static let defaultURL = Bundle.main.url(forResource: "0518sample", withExtension: "mp4")!
     
     let player = AVQueuePlayer(url: defaultURL)
@@ -30,7 +31,7 @@ final class MetalVideoProcessor: ObservableObject {
     var roll: Double = 0.0
     var yaw: Double = 0.0
 
-    @Published var currentFilter: Filter = .none {
+    @Published var currentFilter: Filter = .video360 {
         didSet {
             updateVideoComposition(with: currentFilter)
         }

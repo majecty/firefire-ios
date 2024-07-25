@@ -29,6 +29,30 @@ float3 rotateXY(float3 p, float2 angle) {
 //         + 2.0 * s * cross(u, point);
 //}
 
+float4 quaternionMakeWithAngleAndAxis(float angle, float x, float y, float z) {
+    float halfAngle = angle * 0.5;
+    float sinHalfAngle = sin(halfAngle);
+    return float4(x * sinHalfAngle, y * sinHalfAngle, z * sinHalfAngle, cos(halfAngle));
+}
+
+float4 quaternionMultiply(float4 q1, float4 q2) {
+    return float4(
+        q1.w * q2.x + q1.x * q2.w + q1.y * q2.z - q1.z * q2.y,
+        q1.w * q2.y - q1.x * q2.z + q1.y * q2.w + q1.z * q2.x,
+        q1.w * q2.z + q1.x * q2.y - q1.y * q2.x + q1.z * q2.w,
+        q1.w * q2.w - q1.x * q2.x - q1.y * q2.y - q1.z * q2.z
+    );
+}
+
+
+float4 getFinalQuaternion(float4 attitudeQuaternion) {
+    float4 cq = quaternionMakeWithAngleAndAxis(-PI / 2.0, 0.0, 1.0, 0.0);
+    float4 final = quaternionMultiply(cq, attitudeQuaternion);
+    return float4(final.y, -final.x, final.z, final.w);
+}
+
+
+
 float3 rotateByQuaternion(float3 v, float4 q) {
     float3 qv = float3(q.x, q.y, q.z);
     float3 t = 2.0 * cross(qv, v);
@@ -80,6 +104,7 @@ kernel void video360Filter(
     
     // uv from -1 ~ 1
     float2 uv = (float2)gid * 2.0 / float2(outputTexture.get_width(), outputTexture.get_height()) - 1.0;
+    uv = uv * float2(-1, 1);
     float2 tanFov = float2(tan(0.5 * hfovDegrees * DEG2RAD), tan(0.5 * vfovDegrees * DEG2RAD));
     float3 camDir = normalize(float3(uv * tanFov, 1.0));
 //    float3 rd = camDir;
@@ -93,7 +118,10 @@ kernel void video360Filter(
 //    float4 invertedQuaternion = float4(motionData.quaternion.x, -motionData.quaternion.y, motionData.quaternion.z, motionData.quaternion.w);
 
     
-    float3 camDir2 = rotateByQuaternion(camDir, motionData.quaternion);
+//    quaternionMakeWithAngleAndAxis(-PI / 2, 0, 2, 0)
+    float4 finalQ = getFinalQuaternion(motionData.quaternion);
+    
+    float3 camDir2 = rotateByQuaternion(camDir, finalQ);
 //    float3 camDir2 = rotateByQuaternion(camDir, invertedQuaternion);
     float3 rd = camDir2;
     
