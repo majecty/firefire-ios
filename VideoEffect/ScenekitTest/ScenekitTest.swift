@@ -58,7 +58,6 @@ class VideoPlayerViewModel: ObservableObject {
         sphereNode.position = SCNVector3Make(0,0,0)
         sphereNode.eulerAngles = SCNVector3Make(0, 0, Float.pi);
 
-        
         if (scene == nil) {
             print("scene is nil")
         }
@@ -70,7 +69,7 @@ class VideoPlayerViewModel: ObservableObject {
         cameraNode.position = SCNVector3Make(0, 0, 0)
         scene?.rootNode.addChildNode(cameraNode)
         
-        self.motionManager.deviceMotionUpdateInterval = 1.0 / 60
+        self.motionManager.deviceMotionUpdateInterval = 1.0 / 15
         
         self.motionManager.startDeviceMotionUpdates(using: .xMagneticNorthZVertical, to: .main) {
             [weak self] (motionData, error) in
@@ -130,8 +129,10 @@ struct ScenekitTest: View {
             scene: model.scene,
             pointOfView: cameraNode,
             options: [
+                SceneView.Options.rendersContinuously,
 //                SceneView.Options.allowsCameraControl,
-            ]
+            ],
+            preferredFramesPerSecond: 30
         )
     }
 }
