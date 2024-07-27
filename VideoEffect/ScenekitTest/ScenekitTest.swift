@@ -108,6 +108,7 @@ struct ScenekitTest: View {
     @State var videoSecond: Int = 0;
     @State var fov: Double = 90.0;
     @State var needLoading = true
+    @State var hideUI = false
 
     @StateObject var model = VideoPlayerViewModel()
     
@@ -122,25 +123,32 @@ struct ScenekitTest: View {
                 preferredFramesPerSecond: 30
             )
             .onAppear(perform: startSyncVideo)
-            VStack(alignment: .leading) {
-                Text("Video: " + videoSecond.description)
-                    .background(Color.black)
-                    .foregroundColor(Color.white)
-                    .onAppear(perform: updateVideoTime)
-                Text("Time: " + second.description)
-                    .background(Color.black)
-                    .foregroundColor(Color.white)
-                    .onAppear(perform: updateTime)
-                Text(String(format: "Fov: %.2f", fov))
-                    .background(Color.black)
-                    .foregroundColor(Color.white)
-                Slider(value: $fov, in: 1...179 , label: { Text("fov") }, onEditingChanged: { editing in
-                    model.setFov(fov)
-                }).frame(width: 200)
+            if hideUI == false {
+                VStack(alignment: .leading) {
+                    Text("Video: " + videoSecond.description)
+                        .background(Color.black)
+                        .foregroundColor(Color.white)
+                        .onAppear(perform: updateVideoTime)
+                    Text("Time: " + second.description)
+                        .background(Color.black)
+                        .foregroundColor(Color.white)
+                        .onAppear(perform: updateTime)
+                    Text(String(format: "Fov: %.2f", fov))
+                        .background(Color.black)
+                        .foregroundColor(Color.white)
+                    Slider(value: $fov, in: 1...179 , label: { Text("fov") }, onEditingChanged: { editing in
+                        model.setFov(fov)
+                    }).frame(width: 200)
+                    Button(action: {
+                        hideUI = true
+                    }, label: {
+                        Text("UI 숨기기")
+                    }).background(Color.black)
+                }
+                    .frame(maxWidth: .infinity,
+                           maxHeight: .infinity,
+                           alignment: .topLeading)
             }
-                .frame(maxWidth: .infinity,
-                       maxHeight: .infinity,
-                       alignment: .topLeading)
         }.navigationBarHidden(true)
     }
     
