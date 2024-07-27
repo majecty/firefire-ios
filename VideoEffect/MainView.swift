@@ -13,11 +13,11 @@ struct MainView: View {
         
         NavigationView {
             List {
-                NavigationLink(destination: ScenekitTest()) {
+                NavigationLink(destination: NavigationLazyView(ScenekitTest())) {
                     Text("360 video")
                 }
                 
-                NavigationLink(destination: GyroTest()) {
+                NavigationLink(destination: NavigationLazyView(GyroTest())) {
                     Text("자이로 센서")
                 }
                 
@@ -41,3 +41,13 @@ struct MainView: View {
     }
 }
 
+// https://stackoverflow.com/a/61234030
+struct NavigationLazyView<Content: View>: View {
+    let build: () -> Content
+    init(_ build: @autoclosure @escaping () -> Content) {
+        self.build = build
+    }
+    var body: Content {
+        build()
+    }
+}
