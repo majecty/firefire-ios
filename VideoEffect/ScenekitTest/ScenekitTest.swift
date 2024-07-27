@@ -111,36 +111,34 @@ struct ScenekitTest: View {
     @StateObject var model = VideoPlayerViewModel()
     
     var body: some View {
-        LoadingView(isShowing: $needLoading) {
-            ZStack {
-                SceneView(
-                    scene: model.scene,
-                    pointOfView: cameraNode,
-                    options: [
-                        SceneView.Options.rendersContinuously,
-                    ],
-                    preferredFramesPerSecond: 30
-                )
-                .onAppear(perform: startSyncVideo)
-                VStack(alignment: .leading) {
-                    Text("Video: " + videoSecond.description)
-                        .background(Color.black)
-                        .foregroundColor(Color.white)
-                        .onAppear(perform: updateVideoTime)
-                    Text("Time: " + second.description)
-                        .background(Color.black)
-                        .foregroundColor(Color.white)
-                        .onAppear(perform: updateTime)
-                    Text(String(format: "Fov: %.2f", fov))
-                    Slider(value: $fov, in: 1...179 , label: { Text("fov") }, onEditingChanged: { editing in
-                        model.setFov(fov)
-                    }).frame(width: 200)
-                }
-                    .frame(maxWidth: .infinity,
-                           maxHeight: .infinity,
-                           alignment: .topLeading)
-            }.navigationBarHidden(true)
-        }
+        ZStack {
+            SceneView(
+                scene: model.scene,
+                pointOfView: cameraNode,
+                options: [
+                    SceneView.Options.rendersContinuously,
+                ],
+                preferredFramesPerSecond: 30
+            )
+            .onAppear(perform: startSyncVideo)
+            VStack(alignment: .leading) {
+                Text("Video: " + videoSecond.description)
+                    .background(Color.black)
+                    .foregroundColor(Color.white)
+                    .onAppear(perform: updateVideoTime)
+                Text("Time: " + second.description)
+                    .background(Color.black)
+                    .foregroundColor(Color.white)
+                    .onAppear(perform: updateTime)
+                Text(String(format: "Fov: %.2f", fov))
+                Slider(value: $fov, in: 1...179 , label: { Text("fov") }, onEditingChanged: { editing in
+                    model.setFov(fov)
+                }).frame(width: 200)
+            }
+                .frame(maxWidth: .infinity,
+                       maxHeight: .infinity,
+                       alignment: .topLeading)
+        }.navigationBarHidden(true)
     }
     
     func startSyncVideo() {
@@ -246,46 +244,3 @@ extension CMDeviceMotion {
     }
 }
 
-struct LoadingView<Content>: View where Content: View {
-
-    @Binding var isShowing: Bool
-    var content: () -> Content
-
-    var body: some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .center) {
-
-                self.content()
-                    .disabled(self.isShowing)
-                    .blur(radius: self.isShowing ? 3 : 0)
-
-                VStack {
-                    Text("Loading...")
-                    ActivityIndicator(isAnimating: .constant(true), style: .large)
-                }
-                .frame(width: geometry.size.width / 2,
-                       height: geometry.size.height / 5)
-                .background(Color.secondary.colorInvert())
-                .foregroundColor(Color.primary)
-                .cornerRadius(20)
-                .opacity(self.isShowing ? 1 : 0)
-
-            }
-        }
-    }
-
-}
-
-struct ActivityIndicator: UIViewRepresentable {
-
-    @Binding var isAnimating: Bool
-    let style: UIActivityIndicatorView.Style
-
-    func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
-        return UIActivityIndicatorView(style: style)
-    }
-
-    func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicator>) {
-        isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
-    }
-}
