@@ -19,7 +19,6 @@ class VideoPlayerViewModel: ObservableObject {
     let videoNode: SKVideoNode
     
     let motionManager: CMMotionManager = CMMotionManager()
-//    let cameraNode: SCNNode
     
     func createSphereNode(material: AnyObject?) -> SCNNode {
         let sphere = SCNSphere(radius: 20.0)
@@ -87,32 +86,6 @@ class VideoPlayerViewModel: ObservableObject {
             }
             
             self.cameraNode.orientation = motionData.gaze(atOrientation: .landscapeLeft)
-//            var attitudeOrientation = motionData.gaze(atOrientation: .landscapeLeft)
-//            // TODO: motionData.heading 사용해야함
-//            let heading = motionData.heading
-//            self.sphereNode.eulerAngles = SCNVector3Make(0, 0, Float.pi);
-//            let headingRotation = GLKQuaternionMakeWithAngleAndAxis(Float(heading) * .pi / 180, 0, 1, 0)
-//            self.sphereNode.rotate(by: SCNVector4(headingRotation.x, headingRotation.y, headingRotation.z, headingRotation.w), aroundTarget: SCNVector3Make(0, 0, 0))
-//            self.sphereNode.eulerAngles = SCNVector3Make(Float(heading) * Float.pi / 180, 0, Float.pi);
-//            self.sphereNode.rotation = SCNVector4(
-//                x: headingRotation.x,
-//                y: headingRotation.y,
-//                z: headingRotation.z,
-//                w: headingRotation.w
-//            );
-//            let currentOrientation = GLKQuaternionMake(
-//                Float(self.cameraNode.orientation.x),
-//                Float(self.cameraNode.orientation.y),
-//                Float(self.cameraNode.orientation.z),
-//                Float(self.cameraNode.orientation.w)
-//            )
-//            let newOrientation = GLKQuaternionMultiply(currentOrientation, headingRotation)
-//            self.cameraNode.orientation = SCNVector4(
-//                x: newOrientation.x,
-//                y: newOrientation.y,
-//                z: newOrientation.z,
-//                w: newOrientation.w
-//            )
         }
     }
 }
@@ -130,7 +103,6 @@ struct ScenekitTest: View {
             pointOfView: cameraNode,
             options: [
                 SceneView.Options.rendersContinuously,
-//                SceneView.Options.allowsCameraControl,
             ],
             preferredFramesPerSecond: 30
         )
