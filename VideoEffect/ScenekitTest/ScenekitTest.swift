@@ -98,14 +98,25 @@ struct ScenekitTest: View {
     @StateObject var model = VideoPlayerViewModel()
     
     var body: some View {
-        SceneView(
-            scene: model.scene,
-            pointOfView: cameraNode,
-            options: [
-                SceneView.Options.rendersContinuously,
-            ],
-            preferredFramesPerSecond: 30
-        )
+        ZStack {
+            SceneView(
+                scene: model.scene,
+                pointOfView: cameraNode,
+                options: [
+                    SceneView.Options.rendersContinuously,
+                ],
+                preferredFramesPerSecond: 30
+            )
+            Text("Here will be timer")
+                .background(Color.black)
+                .foregroundColor(Color.white)
+        }
+    }
+}
+
+#Preview {
+    ZStack {
+        ScenekitTest()
     }
 }
 
