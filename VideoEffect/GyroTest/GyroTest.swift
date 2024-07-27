@@ -15,7 +15,7 @@ func radiansToDegrees(_ radians: Double) -> Int {
 
 struct GyroTest: View {
     @ObservedObject
-    var gyro: GyroModel
+    var gyro: GyroModel = GyroModel()
     
     var body: some View {
         NavigationView {

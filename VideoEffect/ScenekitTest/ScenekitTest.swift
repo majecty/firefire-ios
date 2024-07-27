@@ -34,8 +34,13 @@ class VideoPlayerViewModel: ObservableObject {
     
     let cameraNode = SCNNode()
     let sphereNode: SCNNode
+    
+    func setFov(_ fov: Double) {
+        self.cameraNode.camera?.fieldOfView = fov
+    }
 
     init () {
+        print("start initializing viewmodel")
         let asset = AVAsset(url: VideoPlayerViewModel.defaultURL)
         let item = AVPlayerItem(asset: asset)
         playerLooper = AVPlayerLooper(player: self.player, templateItem: item)
@@ -66,6 +71,7 @@ class VideoPlayerViewModel: ObservableObject {
         cameraNode.name = "camera"
         cameraNode.camera = SCNCamera()
         cameraNode.position = SCNVector3Make(0, 0, 0)
+        cameraNode.camera?.fieldOfView = 90
         scene?.rootNode.addChildNode(cameraNode)
         
         self.motionManager.deviceMotionUpdateInterval = 1.0 / 15
@@ -87,6 +93,8 @@ class VideoPlayerViewModel: ObservableObject {
             
             self.cameraNode.orientation = motionData.gaze(atOrientation: .landscapeLeft)
         }
+        
+        print("end initializing viewmodel")
     }
 }
 
@@ -97,38 +105,46 @@ struct ScenekitTest: View {
     
     @State var second: Int = 0;
     @State var videoSecond: Int = 0;
+    @State var fov: Double = 90.0;
+    @State var needLoading = true
 
     @StateObject var model = VideoPlayerViewModel()
     
     var body: some View {
-        ZStack {
-            SceneView(
-                scene: model.scene,
-                pointOfView: cameraNode,
-                options: [
-                    SceneView.Options.rendersContinuously,
-                ],
-                preferredFramesPerSecond: 30
-            )
-            .onAppear(perform: syncVideo)
-            VStack(alignment: .leading) {
-                Text("Video: " + videoSecond.description)
-                    .background(Color.black)
-                    .foregroundColor(Color.white)
-                    .onAppear(perform: updateVideoTime)
-                Text("Time: " + second.description)
-                    .background(Color.black)
-                    .foregroundColor(Color.white)
-                    .onAppear(perform: updateTime)
-//                Spacer()
-            }.border(.blue)
-                .frame(maxWidth: .infinity,
-                       maxHeight: .infinity,
-                       alignment: .topLeading)
-        }.navigationBarHidden(true)
+        LoadingView(isShowing: $needLoading) {
+            ZStack {
+                SceneView(
+                    scene: model.scene,
+                    pointOfView: cameraNode,
+                    options: [
+                        SceneView.Options.rendersContinuously,
+                    ],
+                    preferredFramesPerSecond: 30
+                )
+                .onAppear(perform: startSyncVideo)
+                VStack(alignment: .leading) {
+                    Text("Video: " + videoSecond.description)
+                        .background(Color.black)
+                        .foregroundColor(Color.white)
+                        .onAppear(perform: updateVideoTime)
+                    Text("Time: " + second.description)
+                        .background(Color.black)
+                        .foregroundColor(Color.white)
+                        .onAppear(perform: updateTime)
+                    Text(String(format: "Fov: %.2f", fov))
+                    Slider(value: $fov, in: 1...179 , label: { Text("fov") }, onEditingChanged: { editing in
+                        model.setFov(fov)
+                    }).frame(width: 200)
+                }
+                    .frame(maxWidth: .infinity,
+                           maxHeight: .infinity,
+                           alignment: .topLeading)
+            }.navigationBarHidden(true)
+        }
     }
     
-    func syncVideo() {
+    func startSyncVideo() {
+        needLoading = false;
         let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) {
              _ in
             
@@ -227,5 +243,49 @@ extension CMDeviceMotion {
         }
         
         return final
+    }
+}
+
+struct LoadingView<Content>: View where Content: View {
+
+    @Binding var isShowing: Bool
+    var content: () -> Content
+
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .center) {
+
+                self.content()
+                    .disabled(self.isShowing)
+                    .blur(radius: self.isShowing ? 3 : 0)
+
+                VStack {
+                    Text("Loading...")
+                    ActivityIndicator(isAnimating: .constant(true), style: .large)
+                }
+                .frame(width: geometry.size.width / 2,
+                       height: geometry.size.height / 5)
+                .background(Color.secondary.colorInvert())
+                .foregroundColor(Color.primary)
+                .cornerRadius(20)
+                .opacity(self.isShowing ? 1 : 0)
+
+            }
+        }
+    }
+
+}
+
+struct ActivityIndicator: UIViewRepresentable {
+
+    @Binding var isAnimating: Bool
+    let style: UIActivityIndicatorView.Style
+
+    func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
+        return UIActivityIndicatorView(style: style)
+    }
+
+    func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicator>) {
+        isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
     }
 }

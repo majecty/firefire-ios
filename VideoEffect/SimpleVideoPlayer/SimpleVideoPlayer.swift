@@ -18,6 +18,7 @@ class SimpleVideoPlayerViewModel: ObservableObject {
 //    let playerLooper = AVPlayerLooper(player: self.player, templateItem: AVAsset(url: defaultURL))
     
     init () {
+        print("simple video player init")
         let asset = AVAsset(url: SimpleVideoPlayerViewModel.defaultURL)
         let item = AVPlayerItem(asset: asset)
         playerLooper = AVPlayerLooper(player: self.player, templateItem: item)

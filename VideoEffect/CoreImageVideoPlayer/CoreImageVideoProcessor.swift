@@ -27,6 +27,7 @@ final class CoreImageVideoProcessor: ObservableObject {
     private var timerObserver: AnyCancellable?
     
     init() {
+        print("core image video processor init")
         updateVideoComposition(with: currentFilter)
     }
     

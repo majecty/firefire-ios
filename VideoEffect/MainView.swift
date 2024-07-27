@@ -12,33 +12,32 @@ struct MainView: View {
     var body: some View {
         
         NavigationView {
-            
             List {
-                
-                NavigationLink(destination: SimpleVideoPlayer()) {
-                    Text("Video Player")
-                }
-                
-                NavigationLink(destination: CoreImageVideoPlayer()) {
-                    Text("CoreImage Video Player")
-                }
-
-                NavigationLink(destination: MetalVideoPlayer()) {
-                    Text("Metal Video Player")
-                }
-                
-                NavigationLink(destination: GyroTest(gyro: GyroModel())) {
-                    Text("Gyro Test")
-                }
-                
                 NavigationLink(destination: ScenekitTest()) {
-                    Text("Scenekit test")
+                    Text("360 video")
                 }
                 
+                NavigationLink(destination: GyroTest()) {
+                    Text("자이로 센서")
+                }
+                
+                
+                //                NavigationLink(destination: SimpleVideoPlayer()) {
+                //                    Text("Video Player")
+                //                }
+                //
+                //                NavigationLink(destination: CoreImageVideoPlayer()) {
+                //                    Text("CoreImage Video Player")
+                //                }
+                //
+                //                NavigationLink(destination: MetalVideoPlayer()) {
+                //                    Text("Metal Video Player")
+                //                }
             }
             .listStyle(GroupedListStyle())
-            .navigationBarTitle("Video Effects")
+            .navigationBarTitle("불을 사냥하는 사람들")
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
 }
+

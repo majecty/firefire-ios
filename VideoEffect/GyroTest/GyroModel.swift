@@ -22,7 +22,13 @@ class GyroModel : ObservableObject {
     @Published
     var attitudeQuaternion: CMQuaternion = CMQuaternion.init()
     
+    deinit {
+        print("deinit gyro model")
+        self.motionManager.stopDeviceMotionUpdates()
+    }
+    
     init() {
+        print("gyro model init")
         self.motionManager = CMMotionManager()
         self.motionManager.deviceMotionUpdateInterval = 1.0 / 60
         self.motionManager.startDeviceMotionUpdates(using: .xMagneticNorthZVertical, to: .main) {
