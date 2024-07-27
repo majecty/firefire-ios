@@ -110,6 +110,7 @@ struct ScenekitTest: View {
                 ],
                 preferredFramesPerSecond: 30
             )
+            .onAppear(perform: syncVideo)
             VStack {
                 Text("Video: " + videoSecond.description)
                     .background(Color.black)
@@ -121,6 +122,28 @@ struct ScenekitTest: View {
                     .onAppear(perform: updateTime)
             }
         }
+    }
+    
+    func syncVideo() {
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) {
+             _ in
+            
+            let player = model.player
+            
+            let now = Date()
+            let dateComponents = Calendar.current.dateComponents([.second], from: now)
+            let second = dateComponents.second!
+            
+            let currentVideoTime = model.player.currentTime()
+            let videoSecond = Int(currentVideoTime.seconds)
+            
+            let diff = second - videoSecond;
+            if (abs(diff) > 3 && abs(diff) < 57) {
+                player.seek(to: CMTime(seconds: Double(second), preferredTimescale: 1))
+                print("sync from \(videoSecond) to \(second) abs(diff) \(abs(diff))")
+            }
+        }
+        timer.fire()
     }
 
     func updateVideoTime() {
