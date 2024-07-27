@@ -107,9 +107,14 @@ struct ScenekitTest: View {
                 ],
                 preferredFramesPerSecond: 30
             )
-            Text("Here will be timer")
-                .background(Color.black)
-                .foregroundColor(Color.white)
+            VStack {
+                Text("Video: 37")
+                    .background(Color.black)
+                    .foregroundColor(Color.white)
+                Text("Time: 36")
+                    .background(Color.black)
+                    .foregroundColor(Color.white)
+            }
         }
     }
 }
