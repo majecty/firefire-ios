@@ -94,6 +94,8 @@ struct ScenekitTest: View {
     var cameraNode: SCNNode? {
         model.scene?.rootNode.childNode(withName: "camera", recursively: false)
     }
+    
+    @State var second: Int = 0;
 
     @StateObject var model = VideoPlayerViewModel()
     
@@ -111,11 +113,23 @@ struct ScenekitTest: View {
                 Text("Video: 37")
                     .background(Color.black)
                     .foregroundColor(Color.white)
-                Text("Time: 36")
+                Text("Time: " + second.description)
                     .background(Color.black)
                     .foregroundColor(Color.white)
+                    .onAppear(perform: updateTime)
             }
         }
+    }
+    
+    func updateTime() {
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) {
+             _ in
+            
+            let now = Date()
+            let dateComponents = Calendar.current.dateComponents([.second], from: now)
+            self.second = dateComponents.second!
+        }
+        timer.fire()
     }
 }
 
