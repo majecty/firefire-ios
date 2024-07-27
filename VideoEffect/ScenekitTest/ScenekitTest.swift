@@ -151,16 +151,41 @@ struct ScenekitTest: View {
             let player = model.player
             
             let now = Date()
-            let dateComponents = Calendar.current.dateComponents([.second], from: now)
+            let dateComponents = Calendar.current.dateComponents([.second, .nanosecond], from: now)
             let second = dateComponents.second!
+            let nanosecond = dateComponents.nanosecond!
+            let secondsInDouble = Double(second) + Double(nanosecond) / pow(10.0, 9)
             
             let currentVideoTime = model.player.currentTime()
-            let videoSecond = Int(currentVideoTime.seconds)
+            let videoSecond = currentVideoTime.seconds
             
-            let diff = second - videoSecond;
-            if (abs(diff) > 3 && abs(diff) < 57) {
-                player.seek(to: CMTime(seconds: Double(second), preferredTimescale: 1))
-                print("sync from \(videoSecond) to \(second) abs(diff) \(abs(diff))")
+            let diff = secondsInDouble - videoSecond;
+            if (abs(diff) > 60) {
+                print("something went wrong \(String(format: "%.2f", videoSecond)) to \(String(format: "%.2f", secondsInDouble)) abs(diff) \(abs(diff))")
+            }
+            if (abs(diff) > 0.5 && abs(diff) < 59.5) {
+                player.seek(to: CMTime(seconds: secondsInDouble, preferredTimescale: 1))
+                print("sync from \(String(format: "%.2f", videoSecond)) to \(String(format: "%.2f", secondsInDouble)) abs(diff) \(abs(diff))")
+            }
+            
+//            if (Double.random(in: 0...1.0) < 0.1) {
+//                if (abs(diff) > 0.1 && abs(diff) < 1) {
+//                    if (videoSecond < secondsInDouble) {
+//                        print("step forward \(videoSecond - secondsInDouble)")
+//                        player.currentItem?.step(byCount: 2)
+//                        player.play()
+//                    } else {
+//                        print("step backward \(videoSecond - secondsInDouble)")
+//                        player.currentItem?.step(byCount: -1)
+//                        player.play()
+//                    }
+//                }
+//            }
+//            
+            
+            
+            if (Double.random(in: 0...1.0) < 0.02) {
+                print("diff is \(videoSecond - secondsInDouble)")
             }
         }
         timer.fire()
