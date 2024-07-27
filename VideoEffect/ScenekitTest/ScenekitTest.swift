@@ -111,7 +111,7 @@ struct ScenekitTest: View {
                 preferredFramesPerSecond: 30
             )
             .onAppear(perform: syncVideo)
-            VStack {
+            VStack(alignment: .leading) {
                 Text("Video: " + videoSecond.description)
                     .background(Color.black)
                     .foregroundColor(Color.white)
@@ -120,7 +120,11 @@ struct ScenekitTest: View {
                     .background(Color.black)
                     .foregroundColor(Color.white)
                     .onAppear(perform: updateTime)
-            }
+//                Spacer()
+            }.border(.blue)
+                .frame(maxWidth: .infinity,
+                       maxHeight: .infinity,
+                       alignment: .topLeading)
         }.navigationBarHidden(true)
     }
     
