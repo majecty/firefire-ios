@@ -96,6 +96,7 @@ struct ScenekitTest: View {
     }
     
     @State var second: Int = 0;
+    @State var videoSecond: Int = 0;
 
     @StateObject var model = VideoPlayerViewModel()
     
@@ -110,9 +111,10 @@ struct ScenekitTest: View {
                 preferredFramesPerSecond: 30
             )
             VStack {
-                Text("Video: 37")
+                Text("Video: " + videoSecond.description)
                     .background(Color.black)
                     .foregroundColor(Color.white)
+                    .onAppear(perform: updateVideoTime)
                 Text("Time: " + second.description)
                     .background(Color.black)
                     .foregroundColor(Color.white)
@@ -120,7 +122,17 @@ struct ScenekitTest: View {
             }
         }
     }
-    
+
+    func updateVideoTime() {
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) {
+             _ in
+            
+            let currentVideoTime = model.player.currentTime()
+            videoSecond = Int(currentVideoTime.seconds)
+        }
+        timer.fire()
+    }
+
     func updateTime() {
         let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) {
              _ in
