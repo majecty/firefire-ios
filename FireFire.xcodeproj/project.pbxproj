@@ -48,7 +48,7 @@
 		CE7BFB372702093600CCA283 /* CoreImageVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreImageVideoPlayer.swift; sourceTree = "<group>"; };
 		CE7C71E726DF2A200002C4FE /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		CE7C71E926DF32D80002C4FE /* MetalVideoProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalVideoProcessor.swift; sourceTree = "<group>"; };
-		CE9513BC26DC917A0016944F /* 불을 사냥하는 사람들.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "불을 사냥하는 사람들.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE9513BC26DC917A0016944F /* firefire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = firefire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9513BF26DC917A0016944F /* VideoEffectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEffectApp.swift; sourceTree = "<group>"; };
 		CE9513C126DC917A0016944F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CE9513C326DC917C0016944F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 		CE9513BD26DC917A0016944F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CE9513BC26DC917A0016944F /* 불을 사냥하는 사람들.app */,
+				CE9513BC26DC917A0016944F /* firefire.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -194,7 +194,7 @@
 			);
 			name = FireFire;
 			productName = VideoEffect;
-			productReference = CE9513BC26DC917A0016944F /* 불을 사냥하는 사람들.app */;
+			productReference = CE9513BC26DC917A0016944F /* firefire.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -218,6 +218,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = CE9513B326DC917A0016944F;
 			productRefGroup = CE9513BD26DC917A0016944F /* Products */;
@@ -406,7 +407,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.juhyung.firefire.nativevideo;
-				PRODUCT_NAME = "불을 사냥하는 사람들";
+				PRODUCT_NAME = firefire;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -432,7 +433,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.juhyung.firefire.nativevideo;
-				PRODUCT_NAME = "불을 사냥하는 사람들";
+				PRODUCT_NAME = firefire;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

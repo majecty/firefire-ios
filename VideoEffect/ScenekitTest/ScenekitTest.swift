@@ -131,6 +131,8 @@ struct ScenekitTest: View {
                     .foregroundColor(Color.white)
                     .onAppear(perform: updateTime)
                 Text(String(format: "Fov: %.2f", fov))
+                    .background(Color.black)
+                    .foregroundColor(Color.white)
                 Slider(value: $fov, in: 1...179 , label: { Text("fov") }, onEditingChanged: { editing in
                     model.setFov(fov)
                 }).frame(width: 200)

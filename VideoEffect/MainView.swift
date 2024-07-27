@@ -12,7 +12,7 @@ struct MainView: View {
                 }
                 
                 NavigationLink(destination: NavigationLazyView(GyroTest())) {
-                    Text("자이로 센서")
+                    Text("자이로 센서 동작 확인")
                 }
                 
                 
