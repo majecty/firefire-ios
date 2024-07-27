@@ -74,7 +74,7 @@ class VideoPlayerViewModel: ObservableObject {
         cameraNode.camera?.fieldOfView = 90
         scene?.rootNode.addChildNode(cameraNode)
         
-        self.motionManager.deviceMotionUpdateInterval = 1.0 / 15
+        self.motionManager.deviceMotionUpdateInterval = 1.0 / 100
         
         self.motionManager.startDeviceMotionUpdates(using: .xMagneticNorthZVertical, to: .main) {
             [weak self] (motionData, error) in
