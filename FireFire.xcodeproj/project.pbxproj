@@ -180,9 +180,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CE9513BB26DC917A0016944F /* VideoEffect */ = {
+		CE9513BB26DC917A0016944F /* FireFire */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CE9513CB26DC917C0016944F /* Build configuration list for PBXNativeTarget "VideoEffect" */;
+			buildConfigurationList = CE9513CB26DC917C0016944F /* Build configuration list for PBXNativeTarget "FireFire" */;
 			buildPhases = (
 				CE9513B826DC917A0016944F /* Sources */,
 				CE9513B926DC917A0016944F /* Frameworks */,
@@ -192,7 +192,7 @@
 			);
 			dependencies = (
 			);
-			name = VideoEffect;
+			name = FireFire;
 			productName = VideoEffect;
 			productReference = CE9513BC26DC917A0016944F /* 불을 사냥하는 사람들.app */;
 			productType = "com.apple.product-type.application";
@@ -211,7 +211,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CE9513B726DC917A0016944F /* Build configuration list for PBXProject "VideoEffect" */;
+			buildConfigurationList = CE9513B726DC917A0016944F /* Build configuration list for PBXProject "FireFire" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -224,7 +224,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CE9513BB26DC917A0016944F /* VideoEffect */,
+				CE9513BB26DC917A0016944F /* FireFire */,
 			);
 		};
 /* End PBXProject section */
@@ -445,7 +445,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CE9513B726DC917A0016944F /* Build configuration list for PBXProject "VideoEffect" */ = {
+		CE9513B726DC917A0016944F /* Build configuration list for PBXProject "FireFire" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CE9513C926DC917C0016944F /* Debug */,
@@ -454,7 +454,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CE9513CB26DC917C0016944F /* Build configuration list for PBXNativeTarget "VideoEffect" */ = {
+		CE9513CB26DC917C0016944F /* Build configuration list for PBXNativeTarget "FireFire" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CE9513CC26DC917C0016944F /* Debug */,
