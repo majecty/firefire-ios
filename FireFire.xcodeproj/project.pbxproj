@@ -10,9 +10,9 @@
 		410AA62B2C51343F004387C9 /* ScenekitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410AA62A2C51343F004387C9 /* ScenekitTest.swift */; };
 		410AA62D2C513706004387C9 /* mv200_2s.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 410AA62C2C513706004387C9 /* mv200_2s.mp4 */; };
 		410AA62F2C5141DA004387C9 /* video360.scn in Resources */ = {isa = PBXBuildFile; fileRef = 410AA62E2C5141DA004387C9 /* video360.scn */; };
-		410AA6312C5149E3004387C9 /* 0702mp4ver.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 410AA6302C5149E3004387C9 /* 0702mp4ver.mp4 */; };
 		418023F62C3D8228000C5152 /* GyroTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418023F52C3D8228000C5152 /* GyroTest.swift */; };
 		418023F82C3D8860000C5152 /* GyroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418023F72C3D8860000C5152 /* GyroModel.swift */; };
+		419E55B92C55B8E00099B1D9 /* 300MB 2048.mov in Resources */ = {isa = PBXBuildFile; fileRef = 419E55B82C55B8E00099B1D9 /* 300MB 2048.mov */; };
 		CE31D67526FD7833009D7315 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = CE31D67426FD7833009D7315 /* Shaders.metal */; };
 		CE31D67726FDA689009D7315 /* MetalVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31D67626FDA689009D7315 /* MetalVideoPlayer.swift */; };
 		CE31D67926FDA936009D7315 /* SimpleVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31D67826FDA936009D7315 /* SimpleVideoPlayer.swift */; };
@@ -37,9 +37,9 @@
 		410AA62A2C51343F004387C9 /* ScenekitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenekitTest.swift; sourceTree = "<group>"; };
 		410AA62C2C513706004387C9 /* mv200_2s.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mv200_2s.mp4; sourceTree = "<group>"; };
 		410AA62E2C5141DA004387C9 /* video360.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = video360.scn; sourceTree = "<group>"; };
-		410AA6302C5149E3004387C9 /* 0702mp4ver.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 0702mp4ver.mp4; sourceTree = "<group>"; };
 		418023F52C3D8228000C5152 /* GyroTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroTest.swift; sourceTree = "<group>"; };
 		418023F72C3D8860000C5152 /* GyroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroModel.swift; sourceTree = "<group>"; };
+		419E55B82C55B8E00099B1D9 /* 300MB 2048.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "300MB 2048.mov"; sourceTree = "<group>"; };
 		CE31D67426FD7833009D7315 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		CE31D67626FDA689009D7315 /* MetalVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalVideoPlayer.swift; sourceTree = "<group>"; };
 		CE31D67826FDA936009D7315 /* SimpleVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleVideoPlayer.swift; sourceTree = "<group>"; };
@@ -160,7 +160,7 @@
 				CEDB246527037B8A00AC9CC1 /* Extensions.swift */,
 				410AA62E2C5141DA004387C9 /* video360.scn */,
 				CE9513C326DC917C0016944F /* Assets.xcassets */,
-				410AA6302C5149E3004387C9 /* 0702mp4ver.mp4 */,
+				419E55B82C55B8E00099B1D9 /* 300MB 2048.mov */,
 				410AA62C2C513706004387C9 /* mv200_2s.mp4 */,
 				CEDB2487270EBC8300AC9CC1 /* bunny.mp4 */,
 				CE9513C826DC917C0016944F /* Info.plist */,
@@ -235,12 +235,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				410AA6312C5149E3004387C9 /* 0702mp4ver.mp4 in Resources */,
 				410AA62D2C513706004387C9 /* mv200_2s.mp4 in Resources */,
 				CE9513C726DC917C0016944F /* Preview Assets.xcassets in Resources */,
 				CE9513C426DC917C0016944F /* Assets.xcassets in Resources */,
 				410AA62F2C5141DA004387C9 /* video360.scn in Resources */,
 				CEDB2488270EBC8300AC9CC1 /* bunny.mp4 in Resources */,
+				419E55B92C55B8E00099B1D9 /* 300MB 2048.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
