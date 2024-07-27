@@ -121,7 +121,7 @@ struct ScenekitTest: View {
                     .foregroundColor(Color.white)
                     .onAppear(perform: updateTime)
             }
-        }
+        }.navigationBarHidden(true)
     }
     
     func syncVideo() {
