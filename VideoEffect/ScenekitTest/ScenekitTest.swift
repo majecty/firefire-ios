@@ -36,12 +36,36 @@ class VideoPlayerViewModel: ObservableObject {
     
     let cameraNode = SCNNode()
     let sphereNode: SCNNode
+    let spriteScene: SKScene
     
     func setFov(_ fov: Double) {
         self.cameraNode.camera?.fieldOfView = fov
     }
+    
+    func setVideoSize(_ videoSize: VideoSize) {
+        let size = switch (videoSize) {
+        case .a4096By2048:
+            CGSizeMake(4096, 2048)
+        case .a2048By1024:
+            CGSizeMake(2048, 1024)
+        case .a1024by512:
+            CGSizeMake(1024, 512)
+        case .a512By256:
+            CGSizeMake(512, 256)
+        case .a256By128:
+            CGSizeMake(256, 128)
+        }
+        print("Set size \(size) \(videoSize)")
+        videoNode.size = size
+        spriteScene.size = size
+        videoNode.position = CGPointMake(size.width/2.0,size.height/2.0)
+    }
+    
+    deinit {
+        print("deinit VideoPlayerViewModel")
+    }
 
-    init () {
+    init (videoSize: VideoSize) {
         print("start initializing viewmodel")
         let asset = AVAsset(url: VideoPlayerViewModel.defaultURL)
         let item = AVPlayerItem(asset: asset)
@@ -49,12 +73,24 @@ class VideoPlayerViewModel: ObservableObject {
         self.player.play()
         videoNode = SKVideoNode(avPlayer: self.player)
 //        let size = CGSizeMake(4096, 2048)
-        let size = CGSizeMake(4096 / 2, 2048 / 2)
+//        let size = CGSizeMake(4096 / 2, 2048 / 2)
+        let size = switch (videoSize) {
+        case .a4096By2048:
+            CGSizeMake(4096, 2048)
+        case .a2048By1024:
+            CGSizeMake(2048, 1024)
+        case .a1024by512:
+            CGSizeMake(1024, 512)
+        case .a512By256:
+            CGSizeMake(512, 256)
+        case .a256By128:
+            CGSizeMake(256, 128)
+        }
 //        let size = CGSizeMake(4096 / 4, 2048 / 4)
 //        let size = CGSizeMake(4096/8, 2048/8)
         videoNode.size = size
         videoNode.position = CGPointMake(size.width/2.0,size.height/2.0)
-        let spriteScene = SKScene(size: size)
+        spriteScene = SKScene(size: size)
         spriteScene.addChild(videoNode)
         
         let sphere = SCNSphere(radius: 20.0)
@@ -100,6 +136,14 @@ class VideoPlayerViewModel: ObservableObject {
     }
 }
 
+enum VideoSize {
+    case a4096By2048
+    case a2048By1024
+    case a1024by512
+    case a512By256
+    case a256By128
+}
+
 struct ScenekitTest: View {
     var cameraNode: SCNNode? {
         model.scene?.rootNode.childNode(withName: "camera", recursively: false)
@@ -110,8 +154,14 @@ struct ScenekitTest: View {
     @State var fov: Double = 90.0;
     @State var needLoading = true
     @State var hideUI = false
-
-    @StateObject var model = VideoPlayerViewModel()
+    
+    @ObservedObject
+    var model: VideoPlayerViewModel
+    
+    init(videoSize: VideoSize) {
+        model = .init(videoSize: videoSize)
+//        _model = .init(wrappedValue: VideoPlayerViewModel(videoSize: videoSize))
+    }
     
     var body: some View {
         ZStack {
@@ -140,6 +190,25 @@ struct ScenekitTest: View {
                     Slider(value: $fov, in: 1...179 , label: { Text("fov") }, onEditingChanged: { editing in
                         model.setFov(fov)
                     }).frame(width: 200)
+//                    HStack(alignment: .center) {
+//                        Text("video 크기 조절")
+//                        Button(action: { model.setVideoSize(.a4096By2048) }, label: {
+//                            Text("4096x2048")
+//                        }).background(Color.black)
+//                        Button(action: { model.setVideoSize(.a2048By1024) }, label: {
+//                            Text("2048x1024")
+//                        }).background(Color.black)
+//                        Button(action: { model.setVideoSize(.a1024by512)  }, label: {
+//                            Text("1024x512")
+//                        }).background(Color.black)
+//                        Button(action: { model.setVideoSize(.a512By256)  }, label: {
+//                            Text("512x256")
+//                        }).background(Color.black)
+//                        Button(action: { model.setVideoSize(.a256By128)  }, label: {
+//                            Text("256x128")
+//                        }).background(Color.black)
+//
+//                    }
                     Button(action: {
                         hideUI = true
                     }, label: {
@@ -150,6 +219,7 @@ struct ScenekitTest: View {
                            maxHeight: .infinity,
                            alignment: .topLeading)
             }
+//        }.navigationBarHidden(hideUI)
         }.navigationBarHidden(true)
     }
     
@@ -220,12 +290,6 @@ struct ScenekitTest: View {
             self.second = dateComponents.second!
         }
         timer.fire()
-    }
-}
-
-#Preview {
-    ZStack {
-        ScenekitTest()
     }
 }
 
