@@ -13,6 +13,7 @@
 		418023F62C3D8228000C5152 /* GyroTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418023F52C3D8228000C5152 /* GyroTest.swift */; };
 		418023F82C3D8860000C5152 /* GyroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418023F72C3D8860000C5152 /* GyroModel.swift */; };
 		419E55B92C55B8E00099B1D9 /* 300MB 2048.mov in Resources */ = {isa = PBXBuildFile; fileRef = 419E55B82C55B8E00099B1D9 /* 300MB 2048.mov */; };
+		419E55BB2C57C6BC0099B1D9 /* final 1GB.mov in Resources */ = {isa = PBXBuildFile; fileRef = 419E55BA2C57C6BC0099B1D9 /* final 1GB.mov */; };
 		CE31D67526FD7833009D7315 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = CE31D67426FD7833009D7315 /* Shaders.metal */; };
 		CE31D67726FDA689009D7315 /* MetalVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31D67626FDA689009D7315 /* MetalVideoPlayer.swift */; };
 		CE31D67926FDA936009D7315 /* SimpleVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31D67826FDA936009D7315 /* SimpleVideoPlayer.swift */; };
@@ -40,6 +41,7 @@
 		418023F52C3D8228000C5152 /* GyroTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroTest.swift; sourceTree = "<group>"; };
 		418023F72C3D8860000C5152 /* GyroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroModel.swift; sourceTree = "<group>"; };
 		419E55B82C55B8E00099B1D9 /* 300MB 2048.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "300MB 2048.mov"; sourceTree = "<group>"; };
+		419E55BA2C57C6BC0099B1D9 /* final 1GB.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "final 1GB.mov"; sourceTree = "<group>"; };
 		CE31D67426FD7833009D7315 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		CE31D67626FDA689009D7315 /* MetalVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalVideoPlayer.swift; sourceTree = "<group>"; };
 		CE31D67826FDA936009D7315 /* SimpleVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleVideoPlayer.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				CE9513C326DC917C0016944F /* Assets.xcassets */,
 				419E55B82C55B8E00099B1D9 /* 300MB 2048.mov */,
 				410AA62C2C513706004387C9 /* mv200_2s.mp4 */,
+				419E55BA2C57C6BC0099B1D9 /* final 1GB.mov */,
 				CEDB2487270EBC8300AC9CC1 /* bunny.mp4 */,
 				CE9513C826DC917C0016944F /* Info.plist */,
 				CE9513C526DC917C0016944F /* Preview Content */,
@@ -238,6 +241,7 @@
 				410AA62D2C513706004387C9 /* mv200_2s.mp4 in Resources */,
 				CE9513C726DC917C0016944F /* Preview Assets.xcassets in Resources */,
 				CE9513C426DC917C0016944F /* Assets.xcassets in Resources */,
+				419E55BB2C57C6BC0099B1D9 /* final 1GB.mov in Resources */,
 				410AA62F2C5141DA004387C9 /* video360.scn in Resources */,
 				CEDB2488270EBC8300AC9CC1 /* bunny.mp4 in Resources */,
 				419E55B92C55B8E00099B1D9 /* 300MB 2048.mov in Resources */,

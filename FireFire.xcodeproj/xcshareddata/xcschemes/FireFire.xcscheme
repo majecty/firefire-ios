@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CE9513BB26DC917A0016944F"
-               BuildableName = "&#x1107;&#x116e;&#x11af;&#x110b;&#x1173;&#x11af; &#x1109;&#x1161;&#x1102;&#x1163;&#x11bc;&#x1112;&#x1161;&#x1102;&#x1173;&#x11ab; &#x1109;&#x1161;&#x1105;&#x1161;&#x11b7;&#x1103;&#x1173;&#x11af;.app"
+               BuildableName = "firefire.app"
                BlueprintName = "FireFire"
                ReferencedContainer = "container:FireFire.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CE9513BB26DC917A0016944F"
-            BuildableName = "&#x1107;&#x116e;&#x11af;&#x110b;&#x1173;&#x11af; &#x1109;&#x1161;&#x1102;&#x1163;&#x11bc;&#x1112;&#x1161;&#x1102;&#x1173;&#x11ab; &#x1109;&#x1161;&#x1105;&#x1161;&#x11b7;&#x1103;&#x1173;&#x11af;.app"
+            BuildableName = "firefire.app"
             BlueprintName = "FireFire"
             ReferencedContainer = "container:FireFire.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CE9513BB26DC917A0016944F"
-            BuildableName = "&#x1107;&#x116e;&#x11af;&#x110b;&#x1173;&#x11af; &#x1109;&#x1161;&#x1102;&#x1163;&#x11bc;&#x1112;&#x1161;&#x1102;&#x1173;&#x11ab; &#x1109;&#x1161;&#x1105;&#x1161;&#x11b7;&#x1103;&#x1173;&#x11af;.app"
+            BuildableName = "firefire.app"
             BlueprintName = "FireFire"
             ReferencedContainer = "container:FireFire.xcodeproj">
          </BuildableReference>
