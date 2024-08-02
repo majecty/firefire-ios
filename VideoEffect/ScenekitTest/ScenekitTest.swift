@@ -155,12 +155,12 @@ struct ScenekitTest: View {
     @State var needLoading = true
     @State var hideUI = false
     
-    @ObservedObject
+    @StateObject
     var model: VideoPlayerViewModel
     
     init(videoSize: VideoSize) {
-        model = .init(videoSize: videoSize)
-//        _model = .init(wrappedValue: VideoPlayerViewModel(videoSize: videoSize))
+//        model = .init(videoSize: videoSize)
+        _model = .init(wrappedValue: VideoPlayerViewModel(videoSize: videoSize))
     }
     
     var body: some View {
