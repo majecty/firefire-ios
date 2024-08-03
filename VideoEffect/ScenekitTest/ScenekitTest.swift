@@ -15,7 +15,8 @@ import CoreMotion
 class VideoPlayerViewModel: ObservableObject {
 //    private static let defaultURL = Bundle.main.url(forResource: "0702mp4ver", withExtension: "mp4")!
 //    private static let defaultURL = Bundle.main.url(forResource: "300MB 2048", withExtension: "mov")!
-    private static let defaultURL = Bundle.main.url(forResource: "final 1GB", withExtension: "mov")!
+//    private static let defaultURL = Bundle.main.url(forResource: "final 1GB", withExtension: "mov")!
+    private static let defaultURL = Bundle.main.url(forResource: "final 4096", withExtension: "mov")!
     let player = AVQueuePlayer(url: defaultURL)
     let playerLooper: AVPlayerLooper
     let videoNode: SKVideoNode
