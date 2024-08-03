@@ -152,16 +152,17 @@ struct ScenekitTest: View {
     
     @State var second: Int = 0;
     @State var videoSecond: Int = 0;
-    @State var fov: Double = 90.0;
+    @State var fov: Double = 95.0;
     @State var needLoading = true
     @State var hideUI = false
     
     @StateObject
     var model: VideoPlayerViewModel
     
-    init(videoSize: VideoSize) {
+    init(videoSize: VideoSize, hideUI_: Bool) {
 //        model = .init(videoSize: videoSize)
         _model = .init(wrappedValue: VideoPlayerViewModel(videoSize: videoSize))
+        _hideUI = .init(wrappedValue: hideUI_)
     }
     
     var body: some View {

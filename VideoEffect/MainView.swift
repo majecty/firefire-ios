@@ -7,17 +7,14 @@ struct MainView: View {
         
         NavigationView {
             List {
-                NavigationLink(destination: NavigationLazyView(ScenekitTest(videoSize: .a4096By2048))) {
-                    Text("360 video 4096x2048")
+                NavigationLink(destination: NavigationLazyView(ScenekitTest(videoSize: .a4096By2048, hideUI_: true))) {
+                    Text("360 video 4096x2048 [fov 95][no ui]")
                 }
-                NavigationLink(destination: NavigationLazyView(ScenekitTest(videoSize: .a2048By1024))) {
-                    Text("360 video 2048x1024")
+                NavigationLink(destination: NavigationLazyView(ScenekitTest(videoSize: .a2048By1024, hideUI_: true))) {
+                    Text("360 video 2048x1024 [fov 95][no ui]")
                 }
-                NavigationLink(destination: NavigationLazyView(ScenekitTest(videoSize: .a1024by512))) {
+                NavigationLink(destination: NavigationLazyView(ScenekitTest(videoSize: .a1024by512, hideUI_: false))) {
                     Text("360 video 1024x512")
-                }
-                NavigationLink(destination: NavigationLazyView(ScenekitTest(videoSize: .a256By128))) {
-                    Text("360 video 256x128")
                 }
 
                 NavigationLink(destination: NavigationLazyView(GyroTest())) {
